@@ -1,14 +1,4 @@
-// Object
-
-// const obj_name = new Object() // Object constructor syntax
-// const obj_name = {} // Object literal syntax
-
-// const personFirstName = "Anbu"
-// const personLastName = "Selvan"
-// const personFavColor = "red"
-// const personAge = 27
-// const personAlive = true
-
+// Object Destructuring
 const person = {
   firstName: 'Anbu',
   lastName: 'Selvan',
@@ -23,40 +13,32 @@ const person = {
   },
 }
 
-const personMethod = {
-  yearOfBirth: function () {
-    // get year of birth from age.
-    return new Date().getFullYear() - this.age
-  },
-  favNumbers: [1, 3, 5, 7],
-  get favNumCount() {
-    return this.favNumbers.length
-  },
+// Default values
+const { firstName, lastName, favColor = 'red' } = person
+
+//// Assigning new variable names
+const {
+  firstName: myFirstName,
+  lastName: myLastName,
+  favColor = 'red',
+} = person
+
+console.log(firstName, lastName, favColor)
+
+//// Object Destructuring and rest operator
+let favNum1, favNum2, rest
+;({ favNum1, favNum2, ...rest } = {
+  favNum1: 1,
+  favNum2: 3,
+  favNum3: 5,
+  favNum4: 7,
+})
+
+console.log(favNum1, favNum2, rest)
+
+// Destructing in Functions
+function changeFullName({ firstName, lastName }) {
+  console.log(firstName, lastName)
 }
 
-// Object Merging
-Object.assign(person, { favColor: 'red' })
-// person.favColor = 'red'
-
-// Object cloning
-const personCopied = Object.assign({}, person)
-personCopied.firstName = 'Tamil'
-
-// Object Spread Syntax
-const finalObj = { ...person, ...personMethod }
-
-// Delete Properties
-delete finalObj.isAlive, finalObj.yearOfBirth
-
-// ES6 Syntax
-// Object Property Initializer
-function getFullName(firstName, lastName) {
-  return {
-    firstName: firstName,
-    lastName: lastName,
-  }
-}
-
-console.log(getFullName('Anbu', 'Selvan'))
-
-console.log(person, personCopied, finalObj)
+changeFullName(person)
