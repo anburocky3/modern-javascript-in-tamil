@@ -1,44 +1,70 @@
-// Object Destructuring
-const person = {
-  firstName: 'Anbu',
-  lastName: 'Selvan',
-  age: 27,
-  isAlive: true,
-  parent: {
-    father: 'Appa',
-    mother: 'Amma',
+// Array
+
+// // Defining Array using Array Constructor
+const arrayName = new Array(
+  'Kakka Kakka',
+  'Vettaiyadu Vilaiyadu',
+  'Shivaji',
+  3,
+  {}
+)
+
+// Array can have objects too
+const foods = [
+  {
+    id: 1,
+    title: 'Biriyani',
+    dietary: 'non-vegetarian',
   },
-  fullName: function () {
-    return this.firstName + ' ' + this.lastName
+  {
+    id: 2,
+    title: 'Sambar Rice',
+    dietary: 'vegetarian',
   },
+]
+
+console.log(arrayName)
+
+// // Defining Array using Array Literal
+const favItems = ['Kakka Kakka', 'Vettaiyadu Vilaiyadu', 'Shivaji', 3, {}]
+
+console.log(favItems)
+
+// // Accessing Array elements
+console.log(favItems[0])
+
+// // Multi-dimensional array
+const matrix = [
+  [11, 10, 10],
+  [20, 22, 20],
+  [30, 30, 33],
+]
+
+console.log(matrix[0][1]) // getting first index of elements with 1 index value.
+
+// Passing array to function
+const subjects = ['Physics', 'Maths', 'English', 'Social']
+
+function displayAllSubjects(subjects) {
+  // // for loop
+  // for (let i = 0; i < subjects.length; i++) {
+  //   console.log(subjects[i])
+  // }
+
+  // // for-in loop
+  for (let subject in subjects) {
+    console.log('subjects for-in', subjects[subject])
+  }
+
+  // // for-of loop
+  for (let subject of subjects) {
+    console.log('subjects for-of', subject)
+  }
+
+  // // forEach method
+  subjects.forEach((subject) => {
+    console.log('Subjects', subject)
+  })
 }
 
-// Default values
-const { firstName, lastName, favColor = 'red' } = person
-
-//// Assigning new variable names
-const {
-  firstName: myFirstName,
-  lastName: myLastName,
-  favColor = 'red',
-} = person
-
-console.log(firstName, lastName, favColor)
-
-//// Object Destructuring and rest operator
-let favNum1, favNum2, rest
-;({ favNum1, favNum2, ...rest } = {
-  favNum1: 1,
-  favNum2: 3,
-  favNum3: 5,
-  favNum4: 7,
-})
-
-console.log(favNum1, favNum2, rest)
-
-// Destructing in Functions
-function changeFullName({ firstName, lastName }) {
-  console.log(firstName, lastName)
-}
-
-changeFullName(person)
+displayAllSubjects(subjects)
