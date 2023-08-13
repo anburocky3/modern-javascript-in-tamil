@@ -1,15 +1,4 @@
 // Array
-
-// // Defining Array using Array Constructor
-const arrayName = new Array(
-  'Kakka Kakka',
-  'Vettaiyadu Vilaiyadu',
-  'Shivaji',
-  3,
-  {}
-)
-
-// Array can have objects too
 const foods = [
   {
     id: 1,
@@ -23,48 +12,44 @@ const foods = [
   },
 ]
 
-console.log(arrayName)
+const maagiIngredients = new Map()
+maagiIngredients.set('maagi-masala', 1)
+maagiIngredients.set('water', '1.5 Glass')
+maagiIngredients.set('salt', '0.5 Spoon')
+maagiIngredients.set('chilly-powder', '0.5 Spoon')
+// maagiIngredients.set({}, 'empty obj')
+// maagiIngredients.set(function(){}, 'function')
+// maagiIngredients.set(NaN, 'function')
 
-// // Defining Array using Array Literal
-const favItems = ['Kakka Kakka', 'Vettaiyadu Vilaiyadu', 'Shivaji', 3, {}]
+// how to get?
+console.log(maagiIngredients.get('maagi-masala'))
 
-console.log(favItems)
+// how to get all size of map?
+console.log(maagiIngredients.size)
 
-// // Accessing Array elements
-console.log(favItems[0])
+// Map methods
+console.log(maagiIngredients.has('salt'))
 
-// // Multi-dimensional array
-const matrix = [
-  [11, 10, 10],
-  [20, 22, 20],
-  [30, 30, 33],
-]
+console.log(maagiIngredients.entries()) // return a new iterator object
 
-console.log(matrix[0][1]) // getting first index of elements with 1 index value.
+console.log(maagiIngredients.keys()) // it returns an iterator for all keys in the map.
 
-// Passing array to function
-const subjects = ['Physics', 'Maths', 'English', 'Social']
+console.log(maagiIngredients.values()) // it returns an iterator for all values in the map.
 
-function displayAllSubjects(subjects) {
-  // // for loop
-  // for (let i = 0; i < subjects.length; i++) {
-  //   console.log(subjects[i])
-  // }
+maagiIngredients.delete('chilly-powder') // it removes the specified key-pairs
 
-  // // for-in loop
-  for (let subject in subjects) {
-    console.log('subjects for-in', subjects[subject])
-  }
-
-  // // for-of loop
-  for (let subject of subjects) {
-    console.log('subjects for-of', subject)
-  }
-
-  // // forEach method
-  subjects.forEach((subject) => {
-    console.log('Subjects', subject)
-  })
+// for-of
+for (const [key, value] of maagiIngredients) {
+  console.log('For-Ingredients', key, value)
 }
 
-displayAllSubjects(subjects)
+// forEach
+maagiIngredients.forEach((ingredient) => {
+  console.log(ingredient)
+})
+
+maagiIngredients.clear() // it removes all the keys and values pairs from the map object
+
+console.log(maagiIngredients)
+
+// Weak maps
