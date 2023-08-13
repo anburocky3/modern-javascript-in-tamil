@@ -1,55 +1,42 @@
 // Array
-const foods = [
-  {
-    id: 1,
-    title: 'Biriyani',
-    dietary: 'non-vegetarian',
-  },
-  {
-    id: 2,
-    title: 'Sambar Rice',
-    dietary: 'vegetarian',
-  },
+const dailySchedule = [
+  'wakeup',
+  'walking',
+  'breakfast',
+  'work',
+  'dinner',
+  'work',
+  'sleep',
 ]
 
-const maagiIngredients = new Map()
-maagiIngredients.set('maagi-masala', 1)
-maagiIngredients.set('water', '1.5 Glass')
-maagiIngredients.set('salt', '0.5 Spoon')
-maagiIngredients.set('chilly-powder', '0.5 Spoon')
-// maagiIngredients.set({}, 'empty obj')
-// maagiIngredients.set(function(){}, 'function')
-// maagiIngredients.set(NaN, 'function')
+// Doesn't have duplicate
+const dailyScheduleSet = new Set([
+  'wakeup',
+  'walking',
+  'breakfast',
+  'work',
+  'dinner',
+  'work',
+  'sleep',
+])
 
-// how to get?
-console.log(maagiIngredients.get('maagi-masala'))
+console.log(dailySchedule, dailyScheduleSet)
 
-// how to get all size of map?
-console.log(maagiIngredients.size)
+// Properties
+console.log(dailyScheduleSet.size)
 
-// Map methods
-console.log(maagiIngredients.has('salt'))
+// Set Methods
+dailyScheduleSet.add('play')
+dailyScheduleSet.add({ meeting: ['friends'] })
 
-console.log(maagiIngredients.entries()) // return a new iterator object
+console.log(dailyScheduleSet.has('work')) // to check, if i had worked.
 
-console.log(maagiIngredients.keys()) // it returns an iterator for all keys in the map.
+dailyScheduleSet.delete('walking') // remove
 
-console.log(maagiIngredients.values()) // it returns an iterator for all values in the map.
+// clear()	Removes all elements from a Set
+// forEach()	Invokes a callback for each element
+// values()	Returns an Iterator with all the values in a Set
+// keys()	Same as values()
+// entries()	Returns an Iterator with the [value,value] pairs from a Set
 
-maagiIngredients.delete('chilly-powder') // it removes the specified key-pairs
-
-// for-of
-for (const [key, value] of maagiIngredients) {
-  console.log('For-Ingredients', key, value)
-}
-
-// forEach
-maagiIngredients.forEach((ingredient) => {
-  console.log(ingredient)
-})
-
-maagiIngredients.clear() // it removes all the keys and values pairs from the map object
-
-console.log(maagiIngredients)
-
-// Weak maps
+console.log(dailyScheduleSet)
