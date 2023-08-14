@@ -1,48 +1,77 @@
-// Object Destructuring
-const person = {
-  firstName: 'Anbu',
-  lastName: 'Selvan',
-  age: 27,
-  isAlive: true,
-  favColor: 'blue',
-  parent: {
-    father: 'Appa',
-    mother: 'Amma',
-  },
-  fullName() {
-    return `${this.firstName} ${this.lastName}`
-  },
+// Array
+const favMoviesOld = new Array(
+  'Kakka Kakka',
+  'Vettaiyadu vilaiyadu',
+  'Shivaji',
+  'Mudhalvan'
+) // array constructor
+
+const favMovies = [
+  'Kakka Kakka',
+  'Vettaiyadu vilaiyadu',
+  'Shivaji',
+  'Mudhalvan',
+]
+
+const foods = [
+  { id: 1, title: 'Chicken Biriyani', dietary: 'non-veg' },
+  { id: 2, title: 'Sambar', dietary: 'veg' },
+  { id: 3, title: 'Curd Rice', dietary: 'veg' },
+]
+
+// Accessing values
+console.log(foods[1].title)
+
+// for loop
+for (let i = 0; i < foods.length; i++) {
+  console.log('Food items - for-loop', foods[i].title)
 }
 
-// Default values
-const { firstName, lastName, favColor = 'red' } = person
+// for-in loop
+for (let foodItem in foods) {
+  console.log('for-in', foods[foodItem].title)
+}
 
-//// Assigning new variable names
-const { firstName: myFirstName, lastName: myLastName } = person
+// for-of loop
+for (let foodItem of foods) {
+  console.log('for-of', foodItem.title)
+}
 
-console.log(firstName, lastName, favColor)
-
-//// Object Destructuring and rest operator
-let favNum1, favNum2
-;({ favNum1, favNum2, ...otherValues } = {
-  favNum1: 1,
-  favNum2: 3,
-  favNum3: 5,
-  favNum4: 7,
-  favNum5: 9,
+foods.forEach((food) => {
+  document.getElementById('result').innerHTML += '<li>' + food.title + '</li>'
 })
 
-console.log(favNum1, favNum2, otherValues)
+// Multi-dimensional arrays
+// const matrix = [
+//   [11, 12, 13],
+//   [21, [1, 2, 3], 23],
+//   [31, 32, 33],
+// ]
 
-// const { firstName, lastName, ...remainingPersonDetail } = person
+// console.log(matrix.flat(2))
 
-// console.log(firstName, lastName, remainingPersonDetail)
+const subjects = ['Physics', 'Maths', 'English', 'Science']
 
-// Destructing in Functions
-function displayUser({ firstName, lastName, age, favColor: favoriteColor }) {
-  console.log(
-    `Hello my name is ${firstName} ${lastName} and my age is ${age} and my fav color is ${favoriteColor}`
-  )
+function displayAllSubjects(subjects) {
+  // // for loop
+  // for (let i = 0; i < subjects.length; i++) {
+  //   console.log(subjects[i])
+  // }
+
+  // // for-in loop
+  for (let subject in subjects) {
+    console.log('subjects for-in', subjects[subject])
+  }
+
+  // // for-of loop
+  for (let subject of subjects) {
+    console.log('subjects for-of', subject)
+  }
+
+  // // forEach method
+  subjects.forEach((subject) => {
+    console.log('Subjects', subject)
+  })
 }
 
-displayUser(person)
+displayAllSubjects(subjects)
