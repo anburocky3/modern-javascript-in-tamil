@@ -1,17 +1,10 @@
-// Object
-const objName = new Object() // object constructor syntax
-const objName2 = {} // Object literal syntax
-
-// const personFirstName = 'Anbu'
-// const personLastName = 'Selvan'
-// const personAge = 27
-// const personFavColor = 'red'
-
+// Object Destructuring
 const person = {
   firstName: 'Anbu',
   lastName: 'Selvan',
   age: 27,
   isAlive: true,
+  favColor: 'blue',
   parent: {
     father: 'Appa',
     mother: 'Amma',
@@ -21,41 +14,35 @@ const person = {
   },
 }
 
-person.favColor = 'red'
+// Default values
+const { firstName, lastName, favColor = 'red' } = person
 
-// getting object values
-// document.getElementById('result').innerHTML = person.fullName()
+//// Assigning new variable names
+const { firstName: myFirstName, lastName: myLastName } = person
 
-// Object merging
-const personMethods = {
-  yearOfBirth() {
-    return new Date().getFullYear() - this.age
-  },
-  favNumbers: [1, 3, 5, 7, 9],
-  get favNumbersCount() {
-    return this.favNumbers.length
-  },
+console.log(firstName, lastName, favColor)
+
+//// Object Destructuring and rest operator
+let favNum1, favNum2
+;({ favNum1, favNum2, ...otherValues } = {
+  favNum1: 1,
+  favNum2: 3,
+  favNum3: 5,
+  favNum4: 7,
+  favNum5: 9,
+})
+
+console.log(favNum1, favNum2, otherValues)
+
+// const { firstName, lastName, ...remainingPersonDetail } = person
+
+// console.log(firstName, lastName, remainingPersonDetail)
+
+// Destructing in Functions
+function displayUser({ firstName, lastName, age, favColor: favoriteColor }) {
+  console.log(
+    `Hello my name is ${firstName} ${lastName} and my age is ${age} and my fav color is ${favoriteColor}`
+  )
 }
 
-// Object Merging
-Object.assign(person, personMethods)
-
-// Object Cloning
-const objCopied = Object.assign({}, person)
-
-// Spread Operator
-const finalObj = { ...person, ...personMethods }
-
-// Delete
-delete person.age
-
-function getFullName(firstName, lastName) {
-  return {
-    firstName,
-    lastName,
-  }
-}
-
-console.log(getFullName('Anbu', 'Selvan'))
-
-console.log(person, person.favNumbersCount)
+displayUser(person)
