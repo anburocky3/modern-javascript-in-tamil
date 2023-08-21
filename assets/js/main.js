@@ -1,77 +1,73 @@
-// Array
-const favMoviesOld = new Array(
-  'Kakka Kakka',
-  'Vettaiyadu vilaiyadu',
-  'Shivaji',
-  'Mudhalvan'
-) // array constructor
-
-const favMovies = [
-  'Kakka Kakka',
-  'Vettaiyadu vilaiyadu',
-  'Shivaji',
-  'Mudhalvan',
-]
-
+// Javascript Map Object
 const foods = [
-  { id: 1, title: 'Chicken Biriyani', dietary: 'non-veg' },
+  { id: 1, title: 'Chicken Biriyani', dietary: 'non-veg', title: "Mutton Biriyani"  },
   { id: 2, title: 'Sambar', dietary: 'veg' },
   { id: 3, title: 'Curd Rice', dietary: 'veg' },
 ]
 
-// Accessing values
-console.log(foods[1].title)
+// Map
+const maagiIngredients = new Map()
+maagiIngredients.set("water", "1.5 Glass Cup")
+maagiIngredients.set("masala", 1)
+maagiIngredients.set('salt', '0.5 spoon')
+maagiIngredients.set('chilly', '1 spoon')
+maagiIngredients.set('chicken-masala', '1 spoon')
+// maagiIngredients.set({},'empty obj')
+// maagiIngredients.set(function(){}, 'empty function')
+// maagiIngredients.set(NaN, 'NaN')
 
-// for loop
-for (let i = 0; i < foods.length; i++) {
-  console.log('Food items - for-loop', foods[i].title)
+// or you can create like this.
+const func = function () {};
+const myMap = new Map([
+  [1, 'One'],
+  [2, 'Two'],
+  [func, 'empty obj']
+])
+
+console.log('myMap', myMap.get(2));
+
+// How to access the map data
+console.log(maagiIngredients.get("salt"));
+
+// how to get all size of map
+console.log(maagiIngredients.size);
+
+// Map Methods
+console.log('Is sugar added?', maagiIngredients.has('sugar'));
+maagiIngredients.clear() // it removes all the keys and values pairs from the map object
+console.log(maagiIngredients.entries()); // return a new iterator object
+console.log(maagiIngredients.keys()); // it returns an iterator for all keys in the map.
+console.log(maagiIngredients.values()); // it returns an iterator for all values in the map.
+
+console.log(maagiIngredients);
+
+maagiIngredients.delete('chicken-masala') // it removes the specified key-pairs
+
+
+// displaying map data
+for(let [keyName, valueData] of maagiIngredients.entries()){
+  console.log(keyName, valueData);
 }
 
-// for-in loop
-for (let foodItem in foods) {
-  console.log('for-in', foods[foodItem].title)
-}
-
-// for-of loop
-for (let foodItem of foods) {
-  console.log('for-of', foodItem.title)
-}
-
-foods.forEach((food) => {
-  document.getElementById('result').innerHTML += '<li>' + food.title + '</li>'
+// foreach
+maagiIngredients.forEach(ingredient => {
+  console.log('forEach ', ingredient);
 })
 
-// Multi-dimensional arrays
-// const matrix = [
-//   [11, 12, 13],
-//   [21, [1, 2, 3], 23],
-//   [31, 32, 33],
-// ]
 
-// console.log(matrix.flat(2))
+// Map Object - Object Key example
+const myEmptyObj = {}
+const exampleMap = new Map()
+exampleMap.set(myEmptyObj, 'empty Object')
+exampleMap.set('key', 'value')
 
-const subjects = ['Physics', 'Maths', 'English', 'Science']
+console.log(exampleMap.get(myEmptyObj));
 
-function displayAllSubjects(subjects) {
-  // // for loop
-  // for (let i = 0; i < subjects.length; i++) {
-  //   console.log(subjects[i])
-  // }
+// WeakMap Object
+const myAnotherObj = {}
+const myWeakMap = new WeakMap()
+myWeakMap.set(myAnotherObj, 'Anbu')
 
-  // // for-in loop
-  for (let subject in subjects) {
-    console.log('subjects for-in', subjects[subject])
-  }
+console.log(myWeakMap.get(myAnotherObj));
 
-  // // for-of loop
-  for (let subject of subjects) {
-    console.log('subjects for-of', subject)
-  }
 
-  // // forEach method
-  subjects.forEach((subject) => {
-    console.log('Subjects', subject)
-  })
-}
-
-displayAllSubjects(subjects)
