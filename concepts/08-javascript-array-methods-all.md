@@ -12,28 +12,29 @@ These are just a few examples of the many array methods available in JavaScript.
 8. [`Array.prototype.fill()`](#arrayprototypefill)
 9. [`Array.prototype.filter()`](#arrayprototypefilter)
 10. [`Array.prototype.find()`](#arrayprototypefind)
-11. [`Array.prototype.findIndex()`](#arrayprototypefindIndex)
-12. [`Array.prototype.findLast()`](#arrayprototypefindLast)
-13. [`Array.prototype.flat()`](#arrayprototypeflat)
-14. [`Array.prototype.flatMap()`](#arrayprototypeflatMap)
-15. [`Array.from()`](#arrayfrom)
-16. [`Array.of()`](#arrayof)
-17. [`Array.prototype.includes()`](#arrayprototypeincludes)
-18. [`Array.prototype.indexOf()`](#arrayprototypeindexOf)
-19. [`Array.prototype.lastIndexOf()`](#arrayprototypelastIndexOf)
-20. [`Array.isArray()`](#arrayisarray)
-21. [`Array.prototype.join()`](#arrayprototypejoin)
-22. [`Array.prototype.keys()`](#arrayprototypekeys)
-23. [`Array.prototype.reduce()`](#arrayprototypereduce)
-24. [`Array.prototype.reduceRight()`](#arrayprototypereduceRight)
-25. [`Array.prototype.reverse()`](#arrayprototypereverse)
-26. [`Array.prototype.toReversed()`](#arrayprototypetoreversed)
-27. [`Array.prototype.some()`](#arrayprototypesome)
-28. [`Array.prototype.sort()`](#arrayprototypesort)
-29. [`Array.prototype.toSorted()`](#arrayprototypetosorted)
-30. [`Array.prototype.toLocaleString()`](#arrayprototypetoLocaleString)
-31. [`Array.prototype.toString()`](#arrayprototypetoString)
-32. [`Array.prototype.with()`](#arrayprototypewith)
+11. [`Array.prototype.findLast()`](#arrayprototypefindLast)
+12. [`Array.prototype.findIndex()`](#arrayprototypefindIndex)
+13. [`Array.prototype.findLastIndex()`](#arrayprototypefindLast)
+14. [`Array.prototype.flat()`](#arrayprototypeflat)
+15. [`Array.prototype.flatMap()`](#arrayprototypeflatMap)
+16. [`Array.from()`](#arrayfrom)
+17. [`Array.of()`](#arrayof)
+18. [`Array.prototype.includes()`](#arrayprototypeincludes)
+19. [`Array.prototype.indexOf()`](#arrayprototypeindexOf)
+20. [`Array.prototype.lastIndexOf()`](#arrayprototypelastIndexOf)
+21. [`Array.isArray()`](#arrayisarray)
+22. [`Array.prototype.join()`](#arrayprototypejoin)
+23. [`Array.prototype.keys()`](#arrayprototypekeys)
+24. [`Array.prototype.reduce()`](#arrayprototypereduce)
+25. [`Array.prototype.reduceRight()`](#arrayprototypereduceRight)
+26. [`Array.prototype.reverse()`](#arrayprototypereverse)
+27. [`Array.prototype.toReversed()`](#arrayprototypetoreversed)
+28. [`Array.prototype.some()`](#arrayprototypesome)
+29. [`Array.prototype.sort()`](#arrayprototypesort)
+30. [`Array.prototype.toSorted()`](#arrayprototypetosorted)
+31. [`Array.prototype.toLocaleString()`](#arrayprototypetoLocaleString)
+32. [`Array.prototype.toString()`](#arrayprototypetoString)
+33. [`Array.prototype.with()`](#arrayprototypewith)
 
 ```js
 Array.reverse() or Array.toReversed()
@@ -196,6 +197,15 @@ const result = numbers.find((num, index, arr) => {
 })
 
 console.log(result) // 50
+
+const fruits = ['apple', 'banana', 'orange', 'grape', 'banana']
+
+const bananaFruit = fruits.find((fruit, index, arr) => {
+  console.log(index, arr)
+  return fruit === 'banana'
+})
+
+console.log(bananaFruit)
 ```
 
 #### `Array.prototype.findLast()`
@@ -209,19 +219,6 @@ const result = numbers.findLast((num, index, arr) => {
 })
 
 console.log(result) // 44
-```
-
-#### `Array.prototype.findLast()`
-
-```js
-const fruits = ['apple', 'banana', 'orange', 'grape', 'banana']
-
-const result = fruits.find((fruit, index, arr) => {
-  console.log(index, arr)
-  return fruit === 'banana'
-})
-
-console.log(result)
 ```
 
 #### `Array.prototype.findIndex()`
