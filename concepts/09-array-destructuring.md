@@ -84,14 +84,14 @@ Let's dive into the details:
 8.  **Nested Array Destructuring**
 
     ```js
-    const numbers = [1, [2, 3], 4, 5];
-
-    const [first, [second, third], ...rest] = numbers;
-
-    console.log(first); // Output: 1
-    console.log(second); // Output: 2
-    console.log(third); // Output: 3
-    console.log(rest); // Output: [4, 5]
+    const [one, two, [three, four], five, [six, seven, eight]] = [
+      1,
+      2,
+      [3, 4],
+      5,
+      [6, 7, 8],
+    ];
+    console.log(one, two, three, four, five, six);
     ```
 
 9.  **Array Destructuring on Functions**
