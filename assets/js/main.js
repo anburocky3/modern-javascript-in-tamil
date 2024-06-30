@@ -1,39 +1,39 @@
-Object.prototype.capitalize = function (string) {
-  return string.charAt(0).toUpperCase() + string.slice(1)
+// Learner (name, age, professionType)
+class Learner {
+  constructor(name, age, profession) {
+    this._name = name
+    this._age = age
+    this.profession = profession
+  }
+
+  org = 'cyberdude'
+
+  get name() {
+    return this._name.toUpperCase()
+  }
+
+  set name(value) {
+    this._name = value
+  }
+
+  get age() {
+    return this._age
+  }
+
+  set age(value) {
+    if (typeof value === 'number') {
+      this._age = value
+    } else {
+      console.error('invalid age')
+    }
+  }
+
+  bio() {
+    return `Hello my name is ${this.name} and i'm ${this.age} years old. And my profession is: ${this.profession}, org is ${this.org}`
+  }
 }
 
-const myPlace = {
-  city: 'chennai',
+const learner1 = new Learner('rajinikanth', 27, 'Software Engineer')
 
-  greet() {
-    console.log(`Vannakam ${this.city}!`)
-  },
-
-  capitalize(string) {
-    return 'Migrated to Prototype'
-  },
-}
-
-const nativePlace = {
-  city: 'avadi',
-
-  greet() {
-    console.log('Vannakam ' + city)
-  },
-}
-
-console.log(myPlace.capitalize('avadi'))
-
-// console.log(myPlace.capitalize('trichy'))
-
-// console.log(myPlace.toString())
-
-// console.log(nativePlace)
-
-// List all prototypes of Array
-
-const ArrObjs = Object.getOwnPropertyNames(Array.prototype)
-
-for (const func in ArrObjs) {
-  console.log(ArrObjs[func])
-}
+learner1.age = 20
+console.log(learner1)
