@@ -1,43 +1,23 @@
-class Vehicle {
-  // Private properties (conventionally use _ or #)
-  #speed
-  #fuel
+class ShoppingItem {
+  static totalCount = 0
 
-  constructor(speed, fuel) {
-    this.#speed = speed
-    this.#fuel = fuel
+  constructor(name, amount) {
+    this.name = name
+    this.amount = amount
+    this.constructor.totalCount++
   }
 
-  // Public method to display vehicle status
-  getStatus() {
-    return `Speed: ${this.#speed} km/h, Fuel: ${this.#fuel} liters`
+  static getTotalCount() {
+    return this.totalCount
   }
 
-  // Public method to drive the vehicle
-  drive(distance) {
-    const fuelNeeded = distance / 10
-    if (fuelNeeded <= this.#fuel) {
-      this.#fuel -= fuelNeeded
-      this.#speed += 10
-      console.log(`Drove ${distance} km. ${this.getStatus()}`)
-    } else {
-      console.log('Not enough fuel to drive the distance.')
-    }
-  }
-
-  // Public method to refuel the vehicle
-  refuel(amount) {
-    this.#fuel += amount
-    console.log(`Refueled ${amount} liters. ${this.getStatus()}`)
+  display() {
+    return `Product name is: ${this.product} and its cost is ₹${this.cost}`
   }
 }
 
-// Creating an instance of the Vehicle class
-const myCar = new Vehicle(60, 20)
+const product1 = new ShoppingItem('iPhone', 60000)
+const product2 = new ShoppingItem('Remote Car', 4999)
+const product3 = new ShoppingItem('Play Station 6', 45000)
 
-// Interacting with the vehicle using public methods
-myCar.drive(50) // Drove 50 km. Speed: 70 km/h, Fuel: 15 liters
-myCar.refuel(10) // Refueled 10 liters. Speed: 70 km/h, Fuel: 25 liters
-myCar.drive(200) // Not enough fuel to drive the distance.
-
-new Object()
+console.log(ShoppingItem.getTotalCount())
