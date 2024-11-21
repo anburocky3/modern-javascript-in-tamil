@@ -1,23 +1,16 @@
-class ShoppingItem {
-  static totalCount = 0
+// Function prototype methods
+const numbers = [5, 2, 4, 7, 1]
 
-  constructor(name, amount) {
-    this.name = name
-    this.amount = amount
-    this.constructor.totalCount++
-  }
+// console.log(Math.min(5, 2, 4, 7, 1))
+// console.log(Math.max(5, 2, 4, 7, 1))
 
-  static getTotalCount() {
-    return this.totalCount
-  }
+//  Function.prototype.apply()
+const result = Math.min.call(null, 5, 2, 4, 7, 1)
+const result2 = Math.min.apply(null, numbers)
+// Function.prototype.bind()
 
-  display() {
-    return `Product name is: ${this.product} and its cost is ₹${this.cost}`
-  }
-}
+const result3 = Math.min.bind(null, ...numbers)
 
-const product1 = new ShoppingItem('iPhone', 60000)
-const product2 = new ShoppingItem('Remote Car', 4999)
-const product3 = new ShoppingItem('Play Station 6', 45000)
-
-console.log(ShoppingItem.getTotalCount())
+console.log('using call()', result)
+console.log('using apply()', result2)
+console.log('using bind()', result3())
