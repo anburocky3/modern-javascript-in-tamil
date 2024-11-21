@@ -1,59 +1,18 @@
-// SchoolStudent, CollegeStudent, WorkingProfessional
-// Parent class | base class
-class Learner {
-  constructor(name, age) {
-    this.name = name
-    this.age = age
-  }
-
-  uppercase() {
-    return this.name.toUpperCase()
-  }
-
-  bio() {
-    return `Hello my name is ${this.name} and i'm ${this.age} years old.`
-  }
+function getStatusMessage(age, isMember) {
+  return age >= 18
+    ? isMember
+      ? 'Adult member'
+      : 'Adult Guest'
+    : 'Access denied. Minors are not allowed.'
 }
 
-// child class | sub class | derived class
-class SchoolStudent extends Learner {
-  constructor(name, age, standard) {
-    super(name, age)
-    this.standard = standard
-  }
+const user1 = { age: 20, isMember: true }
+const user2 = { age: 20, isMember: false }
+const user3 = { age: 16, isMember: true }
 
-  bio() {
-    return super.bio() + ` Studying ${this.standard} standard.`
-  }
-
-  attendClass(className) {
-    return `I'm attending ${className} class!`
-  }
-}
-
-// CollegeStudent Class
-class CollegeStudent extends Learner {
-  constructor(name, age, year) {
-    super(name, age)
-    this.year = year
-  }
-
-  bio() {
-    return super.bio() + ` Studying ${this.year} year in College`
-  }
-}
-
-const learner1 = new Learner('Anbu', 27, 'Software Engineer')
-console.log('Learner: ', learner1.bio())
-console.log(learner1.name)
-
-const schoolStudent = new SchoolStudent('Samantha', 14, '12th')
-console.log('SchoolStudent:', schoolStudent.bio())
-console.log('SchoolStudent:', schoolStudent.attendClass('P.T'))
-console.log('SchoolStudent:', schoolStudent.attendClass('Maths'))
-
-const collegeStudent = new CollegeStudent('Divya', 18, '1st')
-console.log('collegeStudent:', collegeStudent.bio())
-
-console.log(learner1.uppercase())
-console.log(schoolStudent.uppercase())
+console.log(getStatusMessage(user1.age, user1.isMember))
+// Output: Welcome, adult member!
+console.log(getStatusMessage(user2.age, user2.isMember))
+// Output: Welcome, adult guest!
+console.log(getStatusMessage(user3.age, user3.isMember))
+// Output: Access denied. Minors are not allowed.
