@@ -1,14 +1,27 @@
-try {
-  const json = '{ "name": "Anbu", "age": 28 }'
-  const user = JSON.parse(json)
-  console.log('Showing the UI: ', user.name)
+const userHasAllInfo = new Promise((resolve, reject) => {
+  // 1. Get user information
+  resolve('I got the user info')
+})
 
-  if (user.isAlive === undefined) {
-    // throw 'IsAlive is not available'
-    throw new Error('IsAlive is not available')
-  }
-} catch (error) {
-  console.error(error.stack)
-}
+userHasAllInfo
+  .then((user) => {
+    console.log('USER INFO:', user)
 
-console.log('Everything finished! good bye!')
+    return new Promise((resolve, reject) => {
+      // API: Call the user posts api: // 2. Get user posts
+      //   resolve('I got the user posts')
+      reject("I Don't have the posts")
+    })
+  })
+  .then((userPost) => {
+    console.log('USER INFO POST:', userPost)
+
+    return new Promise((resolve, reject) => {
+      // API: Call the user images api: // 3. Get user images
+      resolve('I got the user images')
+    })
+  })
+  .then((userImages) => {
+    console.log('USER INFO IMAGES: ', userImages)
+  })
+  .catch((reason) => console.log('Error:', reason))
