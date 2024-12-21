@@ -1,27 +1,22 @@
-const userHasAllInfo = new Promise((resolve, reject) => {
-  // 1. Get user information
-  resolve('I got the user info')
+// 4. Promise.any() - ES12
+const promise1 = Promise.reject(0)
+
+const promise2 = new Promise((resolve) => {
+  setTimeout(resolve, 100, 'quick')
 })
 
-userHasAllInfo
-  .then((user) => {
-    console.log('USER INFO:', user)
+const promise3 = new Promise((resolve) => {
+  setTimeout(resolve, 500, 'slow')
+})
 
-    return new Promise((resolve, reject) => {
-      // API: Call the user posts api: // 2. Get user posts
-      //   resolve('I got the user posts')
-      reject("I Don't have the posts")
-    })
-  })
-  .then((userPost) => {
-    console.log('USER INFO POST:', userPost)
+const promise4 = new Promise((resolve, reject) => {
+  setTimeout(() => reject('Something went wrong'), 50)
+})
 
-    return new Promise((resolve, reject) => {
-      // API: Call the user images api: // 3. Get user images
-      resolve('I got the user images')
-    })
+Promise.any([promise1, promise2, promise3, promise4])
+  .then((response) => {
+    console.log('Response', response)
   })
-  .then((userImages) => {
-    console.log('USER INFO IMAGES: ', userImages)
+  .catch((error) => {
+    console.error('Error', error)
   })
-  .catch((reason) => console.log('Error:', reason))
