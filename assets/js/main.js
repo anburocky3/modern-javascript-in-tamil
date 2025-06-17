@@ -1,22 +1,62 @@
-// 4. Promise.any() - ES12
-const promise1 = Promise.reject(0)
+/*
+1. Get User by Id
+2. Get all User subscriptions (hotstar, prime)
+3. Calculate total cost of all
+*/
 
-const promise2 = new Promise((resolve) => {
-  setTimeout(resolve, 100, 'quick')
-})
+function getUserId(id) {
+  return new Promise((resolve, reject) => {
+    console.log('Got UserID:', id)
 
-const promise3 = new Promise((resolve) => {
-  setTimeout(resolve, 500, 'slow')
-})
-
-const promise4 = new Promise((resolve, reject) => {
-  setTimeout(() => reject('Something went wrong'), 50)
-})
-
-Promise.any([promise1, promise2, promise3, promise4])
-  .then((response) => {
-    console.log('Response', response)
+    setTimeout(() => {
+      resolve({ id: id, name: 'Anbu' })
+    }, 1000)
   })
-  .catch((error) => {
-    console.error('Error', error)
+}
+
+function getSubscriptions(userInfo) {
+  return new Promise((resolve, reject) => {
+    console.log('Got User subscriptions for ', userInfo)
+    setTimeout(() => {
+      resolve([
+        { id: 1, title: 'Hotstar' },
+        { id: 2, title: 'Prime' },
+        { id: 3, title: 'Sunnxt' },
+      ])
+      //   reject('Something went wrong')
+    }, 2000)
   })
+}
+
+function calculateCost(subscriptions) {
+  console.log('Subscriptions:', subscriptions)
+
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(subscriptions.length * 100)
+    }, 3000)
+  })
+}
+
+// Executing promise
+// getUserId(1)
+//   .then(getSubscriptions)
+//   .then(calculateCost)
+//   .then((cost) => {
+//     console.log('My Total cost is: ', cost)
+//   })
+
+async function displayTotalCost() {
+  try {
+    const userInfo = await getUserId(1)
+    const subscriptions = await getSubscriptions(userInfo)
+    const totalCost = await calculateCost(subscriptions)
+
+    console.log(totalCost)
+    console.log('Everything is fetched!')
+  } catch (error) {
+    console.error('CATCH:', error)
+  }
+}
+
+displayTotalCost()
