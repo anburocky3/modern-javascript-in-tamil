@@ -5,14 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Javascript</title>
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
-<body>
-    <h1>ES6(2015) Modern Javascript</h1>
+<body class="p-10">
+    <h1 class="font-semibold text-xl mb-3">ES6 Modules</h1>
+    <div>
+        <button type="button" id="sayHello"
+            class="px-4 py-2 bg-blue-500 rounded outline-none text-white hover:bg-blue-600">
+            Say Hello!</button>
+        <div id="result"></div>
+    </div>
 
-    <ol id="result"></ol>
-
-    <script src="./assets/js/main.js"></script>
+    <script type="module" src="./assets/js/main.js"></script>
 </body>
 
 </html>
