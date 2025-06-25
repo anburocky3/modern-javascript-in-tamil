@@ -1,34 +1,14 @@
-console.log(localStorage)
+const colorInput = document.querySelector('#color')
 
-// properties
-// console.log(localStorage.length)
+const ifColorCodeExist = sessionStorage.getItem('color')
 
-localStorage.setItem('name', 'Anbu')
-localStorage.setItem('age', 28)
+if (ifColorCodeExist) {
+  document.documentElement.style.backgroundColor = ifColorCodeExist
+  colorInput.value = ifColorCodeExist
+}
 
-const movies = [
-  {
-    id: 1,
-    title: 'Tourist Family',
-  },
-  {
-    id: 2,
-    title: 'Thug Life!',
-  },
-]
-
-localStorage.setItem('movies', JSON.stringify(movies))
-
-// How to get from localStorage
-console.log('My Name is: ', localStorage.getItem('name'))
-console.log('My Age is: ', localStorage.getItem('age'))
-console.log('My movies are: ', JSON.parse(localStorage.getItem('movies')))
-
-// How to remove from localStorage
-// localStorage.removeItem('name')
-// localStorage.removeItem('age')
-
-// Remove all localStorage dat
-// localStorage.clear()
-
-// localStorage.key()
+colorInput.addEventListener('change', (event) => {
+  const colorCode = event.target.value
+  document.documentElement.style.backgroundColor = colorCode
+  sessionStorage.setItem('color', colorCode)
+})
