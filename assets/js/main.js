@@ -1,10 +1,34 @@
-// import toast from './utils/toast.mjs' // esm modules (.mjs)
-// import logger from './utils/logger.mjs'
-// // import * as math from './utils/math.js'
+console.log(localStorage)
 
-// toast('Hello Anbu, from CyberDude')
-// logger('Page loaded!')
+// properties
+// console.log(localStorage.length)
 
-const { writeInfo, libName } = require('./utils/sayHello.cjs') // commonjs (.cjs)
+localStorage.setItem('name', 'Anbu')
+localStorage.setItem('age', 28)
 
-writeInfo('Anbu From CyberDude 2 - ' + libName)
+const movies = [
+  {
+    id: 1,
+    title: 'Tourist Family',
+  },
+  {
+    id: 2,
+    title: 'Thug Life!',
+  },
+]
+
+localStorage.setItem('movies', JSON.stringify(movies))
+
+// How to get from localStorage
+console.log('My Name is: ', localStorage.getItem('name'))
+console.log('My Age is: ', localStorage.getItem('age'))
+console.log('My movies are: ', JSON.parse(localStorage.getItem('movies')))
+
+// How to remove from localStorage
+// localStorage.removeItem('name')
+// localStorage.removeItem('age')
+
+// Remove all localStorage dat
+// localStorage.clear()
+
+// localStorage.key()
