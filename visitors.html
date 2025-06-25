@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Tab Session Counter</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2rem;
+        }
+
+        span {
+            color: green;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="color" id="themeColor">
+
+    <!-- <h1>You have visited this page <span id="count">0</span> time(s) in this session.</h1> -->
+    <button onclick="sessionStorage.clear(); location.reload()">Reset Session</button>
+
+    <script>
+        const themeColorEl = document.getElementById("themeColor")
+
+        // read localStorage
+        const ifThemeSet = sessionStorage.getItem('themeColor')
+
+        if (ifThemeSet) {
+            document.body.style.backgroundColor = ifThemeSet
+            themeColorEl.value = ifThemeSet
+        }
+
+
+
+        themeColorEl.addEventListener('change', (event) => {
+            const themeColor = event.target.value
+            sessionStorage.setItem('themeColor', themeColor)
+            document.body.style.backgroundColor = event.target.value
+        })
+
+        // Example #2: Page Reload Counter
+        // // Get current count or start with 0
+        // let count = sessionStorage.getItem("visitCount") || 0;
+        // count++;
+        // sessionStorage.setItem("visitCount", count);
+        // document.getElementById("count").textContent = count;
+    </script>
+
+</body>
+
+</html>

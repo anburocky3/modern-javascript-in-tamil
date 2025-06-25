@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Offline Notes (IndexedDB)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            padding: 2rem;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h2>Save Notes Locally (IndexedDB)</h2>
+    <textarea id="noteInput" placeholder="Type your note here..."></textarea>
+    <button onclick="saveNote()">Save</button>
+    <h3>Saved Notes:</h3>
+    <ul id="notesList"></ul>
+
+    <script>
+        let db;
+        const request = indexedDB.open("NotesDB", 1);
+
+        request.onerror = () => alert("IndexedDB not supported!");
+
+        request.onsuccess = () => {
+            db = request.result;
+            loadNotes();
+        };
+
+        request.onupgradeneeded = (e) => {
+            db = e.target.result;
+            db.createObjectStore("notes", { autoIncrement: true });
+        };
+
+        function saveNote() {
+            const noteText = document.getElementById("noteInput").value;
+            const tx = db.transaction("notes", "readwrite");
+            const store = tx.objectStore("notes");
+            store.add(noteText);
+            tx.oncomplete = () => {
+                document.getElementById("noteInput").value = "";
+                loadNotes();
+            };
+        }
+
+        function loadNotes() {
+            const tx = db.transaction("notes", "readonly");
+            const store = tx.objectStore("notes");
+            const request = store.openCursor();
+            const list = document.getElementById("notesList");
+            list.innerHTML = "";
+
+            request.onsuccess = (e) => {
+                const cursor = e.target.result;
+                if (cursor) {
+                    const li = document.createElement("li");
+                    li.textContent = cursor.value;
+                    list.appendChild(li);
+                    cursor.continue();
+                }
+            };
+        }
+    </script>
+
+</body>
+
+</html>

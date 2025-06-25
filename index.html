@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -8,18 +8,51 @@
 
     <!-- TailwindCSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        @import 'tailwindcss';
+
+        @custom-variant dark (&:where(.dark, .dark *));
+    </style>
 </head>
 
-<body class="p-10">
-    <h1 class="font-semibold text-xl mb-3">ES6 Modules</h1>
-    <div>
-        <button type="button" id="sayHello"
-            class="px-4 py-2 bg-blue-500 rounded outline-none text-white hover:bg-blue-600">
-            Say Hello!</button>
-        <div id="result"></div>
+<body class="p-10 bg-gray-200 dark:bg-gray-900">
+    <button onclick="toggleTheme()"
+        class="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 dark:bg-yellow-400 dark:text-black dark:hover:bg-yellow-500 float-right">
+        Toggle Theme
+    </button>
+    <div class="bg-white dark:bg-indigo-900  p-10 rounded">
+        <h1 class="font-semibold text-xl mb-3 text-indigo-600 dark:text-white">Web Storage API</h1>
+        <div>
+            <h1 class="text-indigo-700 dark:text-white">We are going to learn fun stuff!</h1>
+        </div>
     </div>
 
+    <!-- Assignments -->
+    <!-- 1. Change site theme or language! -->
+    <!-- 2. Bookmark in LocalStorage -->
+
     <script type="module" src="./assets/js/main.js"></script>
+
+    <script>
+
+        if (localStorage.theme === 'dark') {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+    </script>
 </body>
 
 </html>

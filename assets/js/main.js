@@ -1,10 +1,29 @@
-// import toast from './utils/toast.mjs' // esm modules (.mjs)
-// import logger from './utils/logger.mjs'
-// // import * as math from './utils/math.js'
+// console.log(localStorage)
 
-// toast('Hello Anbu, from CyberDude')
-// logger('Page loaded!')
+// localStorage.setItem('theme', 'light')
+// console.log(localStorage.getItem('theme'))
+// // localStorage.removeItem('theme')
+// localStorage.clear()
 
-const { writeInfo, libName } = require('./utils/sayHello.cjs') // commonjs (.cjs)
+// // const myBookmarks = [
+// //   {
+// //     id: 1,
+// //     name: 'Harry Potter',
+// //   },
+// //   {
+// //     id: 2,
+// //     name: 'Ponniyin Selvan - 1',
+// //   },
+// // ]
 
-writeInfo('Anbu From CyberDude 2 - ' + libName)
+// // localStorage.setItem('favourites', JSON.stringify(myBookmarks))
+
+// document.cookie = 'user=Anbu'
+// console.log(document.cookie)
+
+// // we need to escape the string
+// document.cookie = encodeURIComponent('user name') + '=' + 'anburocky3'
+
+const currentUser = sessionStorage
+
+console.log(currentUser)
