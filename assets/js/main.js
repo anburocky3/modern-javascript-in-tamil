@@ -1,10 +1,14 @@
-// import toast from './utils/toast.mjs' // esm modules (.mjs)
-// import logger from './utils/logger.mjs'
-// // import * as math from './utils/math.js'
+const colorInput = document.querySelector('#color')
 
-// toast('Hello Anbu, from CyberDude')
-// logger('Page loaded!')
+const ifColorCodeExist = sessionStorage.getItem('color')
 
-const { writeInfo, libName } = require('./utils/sayHello.cjs') // commonjs (.cjs)
+if (ifColorCodeExist) {
+  document.documentElement.style.backgroundColor = ifColorCodeExist
+  colorInput.value = ifColorCodeExist
+}
 
-writeInfo('Anbu From CyberDude 2 - ' + libName)
+colorInput.addEventListener('change', (event) => {
+  const colorCode = event.target.value
+  document.documentElement.style.backgroundColor = colorCode
+  sessionStorage.setItem('color', colorCode)
+})

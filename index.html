@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="">
 
 <head>
     <meta charset="UTF-8">
@@ -8,18 +8,49 @@
 
     <!-- TailwindCSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        @import 'tailwindcss';
+
+        @custom-variant dark (&:where(.dark, .dark *));
+    </style>
 </head>
 
-<body class="p-10">
-    <h1 class="font-semibold text-xl mb-3">ES6 Modules</h1>
-    <div>
-        <button type="button" id="sayHello"
-            class="px-4 py-2 bg-blue-500 rounded outline-none text-white hover:bg-blue-600">
-            Say Hello!</button>
-        <div id="result"></div>
+<body class="p-10 bg-blue-50 dark:bg-blue-950">
+
+    <button type="button" class="px-3 py-2 rounded bg-yellow-500 text-black float-right text-sm font-semibold"
+        onclick="toggleTheme()">
+        Toggle Theme
+    </button>
+
+    <div class="bg-blue-100 dark:bg-blue-800 p-10 rounded">
+        <h1 class="font-semibold text-xl mb-3 dark:text-white">Browser Storage API</h1>
+        <p class="dark:text-white">We are learning Storage in Javascript!</p>
     </div>
 
     <script type="module" src="./assets/js/main.js"></script>
+
+    <script>
+        const html = document.documentElement
+
+        if (localStorage.getItem('theme') === 'dark') {
+            html.classList.add('dark')
+        }
+        else {
+            html.classList.remove('dark')
+        }
+
+        function toggleTheme() {
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark')
+                localStorage.setItem('theme', 'light')
+            } else {
+                html.classList.add('dark')
+                localStorage.setItem('theme', 'dark')
+            }
+
+        }
+    </script>
 </body>
 
 </html>
