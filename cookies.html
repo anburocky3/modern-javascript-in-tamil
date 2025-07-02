@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies</title>
+
+    <!-- TailwindCSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <style type="text/tailwindcss">
+        .inputTxt {
+            @apply px-4 py-2 bg-gray-200 rounded w-full outline-none;
+        }
+    </style>
+
+</head>
+
+<body class="bg-blue-800 p-10">
+
+    <form onsubmit="saveUsername(event)" class="bg-white p-5 rounded max-w-md mx-auto space-y-4">
+        <h2 class="font-bold text-2xl mb-5">Login to CyberDude!</h2>
+
+        <input type="text" id="username" placeholder="Enter username" class="inputTxt" />
+
+        <input type="password" placeholder="Enter password" class="inputTxt" />
+
+        <div class="flex items-center mb-3">
+            <input type="checkbox" id="rememberMe" class="w-4 h-4 mr-2" />
+            <label for="rememberMe" class="select-none text-gray-500 text-sm">Remember Me</label>
+        </div>
+
+        <button type="submit" class="px-4 py-2 rounded bg-blue-500 hover:bg-blue-600 w-full text-white">Login</button>
+    </form>
+
+    <script src="./assets/js/main.js"></script>
+
+    <script>
+        document.cookie = `name=${encodeURIComponent('a=092376')}; path=/;`
+
+        // setTimeout(() => {
+        //     location.href = "/admin/dashboard.html"
+        // }, 3000);
+
+        console.log('Cookies', document.cookie);
+    </script>
+
+    <script>
+        /*
+            name=value;
+            expires=Sat, 6 July 2026 12:00:00 UTC;
+            max-age=60;
+            path=/
+            secure=true;
+            httpOnly=true;
+        */
+        const expires = new Date();
+        expires.setSeconds(expires.getSeconds() + 3600);
+
+        console.log('expires', expires);
+
+        // document.cookie = "name=Anbu; expires=Sat, 6 July 2026 12:00:00 UTC;"
+        // document.cookie = `name=Anbu; expires=${expires}`
+        // document.cookie = "age=28; max-age=5;"
+        // document.cookie = "sex=male; expires=; SameSite=None; Secure;"
+        // document.cookie = "temp=keysdasd;"
+
+        // Storing multiple values (NOT RECOMMENDED!)
+        const myData = {
+            name: "Anbu",
+            age: 28,
+            city: "Chennai"
+        };
+        document.cookie = "userData=" + JSON.stringify(myData) + "; Path=/";
+        const allCookies = document.cookie;
+
+        console.log(allCookies);
+
+        // To retrieve and use:
+        const cookieString = document.cookie;
+        const userDataMatch = cookieString.match(/userData=([^;]+)/);
+        if (userDataMatch) {
+            const userData = JSON.parse(userDataMatch[1]);
+            console.log(userData.name); // John Doe
+        }
+
+        function getCookieByName(name) {
+            const cookieString = document.cookie;
+            const cookies = cookieString.split(';'); // Split the string into individual cookie pairs
+
+            for (let i = 0; i < cookies.length; i++) {
+                let cookie = cookies[i].trim(); // Remove leading/trailing whitespace
+
+                // Check if the cookie starts with the desired name followed by '='
+                if (cookie.startsWith(name + '=')) {
+                    // Extract and return the value part of the cookie
+                    return cookie.substring(name.length + 1);
+                }
+            }
+            return null; // Return null if the cookie is not found
+        }
+
+
+        function getCookie(key) {
+            const cookieValue = document.cookie.split('; ')
+
+            for (let c of cookieValue) {
+                const [key, value] = c.split("=");
+                if (key === name) return value;
+            }
+        }
+
+
+
+        console.log(getCookieByName("sex"));
+
+
+        // fetch("/echo", {
+        //     method: "GET",
+        // })
+        //     .then(res => res.text())
+        //     .then(data => console.log("Response:", data))
+        //     .catch(err => console.error("Error:", err));
+
+        // document.cookie = "userId=12345; path=/";
+    </script>
+
+    <script>
+        // Load saved cookie on page load
+        window.onload = function () {
+            const savedUsername = getCookie("username");
+            if (savedUsername) {
+                document.getElementById("username").value = savedUsername;
+                document.getElementById("rememberMe").checked = true;
+            }
+        };
+
+        function saveUsername(event) {
+            event.preventDefault();
+            const username = document.getElementById("username").value;
+            const remember = document.getElementById("rememberMe").checked;
+
+            if (remember) {
+                // Store for 7 days
+                document.cookie = `username=${username}; max-age=${60 * 60 * 24 * 7}; path=/`;
+            } else {
+                // Clear cookie if not remembered
+                document.cookie = "username=; max-age=0; path=/";
+            }
+
+            alert("Form submitted!");
+        }
+
+        function getCookie(name) {
+            const cookies = document.cookie.split("; ");
+            for (let c of cookies) {
+                const [key, value] = c.split("=");
+                if (key === name) return value;
+            }
+            return "";
+        }
+    </script>
+</body>
+
+</html>
