@@ -9,48 +9,37 @@
     <!-- TailwindCSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
-    <style type="text/tailwindcss">
-        @import 'tailwindcss';
-
-        @custom-variant dark (&:where(.dark, .dark *));
-    </style>
 </head>
 
-<body class="p-10 bg-blue-50 dark:bg-blue-950">
-
-    <button type="button" class="px-3 py-2 rounded bg-yellow-500 text-black float-right text-sm font-semibold"
-        onclick="toggleTheme()">
-        Toggle Theme
-    </button>
-
-    <div class="bg-blue-100 dark:bg-blue-800 p-10 rounded">
-        <h1 class="font-semibold text-xl mb-3 dark:text-white">Browser Storage API</h1>
-        <p class="dark:text-white">We are learning Storage in Javascript!</p>
-    </div>
-
-    <script type="module" src="./assets/js/main.js"></script>
+<body class="p-10 bg-blue-50 dark:bg-blue-950 text-white">
+    <h4 class="text-3xl">Cookies</h4>
+    <a href="/admin/dashboard.html">Dashboard</a>
 
     <script>
-        const html = document.documentElement
 
-        if (localStorage.getItem('theme') === 'dark') {
-            html.classList.add('dark')
+        const hobbies = {
+            reading: 'book',
+            singing: 'tamil'
         }
-        else {
-            html.classList.remove('dark')
-        }
+        // writing cookies in Javascript
+        document.cookie = `name=${encodeURIComponent("anbu selvan")}; domain=.127.0.0.1; max-age= ${1000 * 60};`
+        document.cookie = 'age=28; expires=Sat, 06 July, 2025 12:00:00'
+        document.cookie = 'role=admin; path=/admin/; secure; httpOnly;'
+        document.cookie = `hobbies=${JSON.stringify(hobbies)}`
+        /*
+            name,
+            value,
+            domain,
+            path,
+            expires/max-age;
+            secure
+        */
 
-        function toggleTheme() {
-            if (html.classList.contains('dark')) {
-                html.classList.remove('dark')
-                localStorage.setItem('theme', 'light')
-            } else {
-                html.classList.add('dark')
-                localStorage.setItem('theme', 'dark')
-            }
+        // read
+        console.log(document.cookie);
 
-        }
     </script>
+
 </body>
 
 </html>
